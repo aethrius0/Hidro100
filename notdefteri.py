@@ -15,16 +15,16 @@ class Pencere(QtWidgets.QWidget):
         #Sağ tarafta kaydedilen notların olduğu kısım
         self.kayitli_kutucuk=QtWidgets.QTextEdit(self)
         self.kayitli_kutucuk.move(400,10)
-        self.kayitli_kutucuk.setGeometry(400,10,200,80)
+        self.kayitli_kutucuk.setGeometry(400,30,200,60)
         
         self.kayitli_kutucuk_2=QtWidgets.QTextEdit(self)
-        self.kayitli_kutucuk_2.setGeometry(400,100,200,80)
+        self.kayitli_kutucuk_2.setGeometry(400,135,200,60)
         
         self.kayitli_kutucuk_3=QtWidgets.QTextEdit(self)
-        self.kayitli_kutucuk_3.setGeometry(400,190,200,80)
+        self.kayitli_kutucuk_3.setGeometry(400,240,200,60)
         
         self.kayitli_kutucuk_4=QtWidgets.QTextEdit(self)
-        self.kayitli_kutucuk_4.setGeometry(400,280,200,80)
+        self.kayitli_kutucuk_4.setGeometry(400,345,200,60)
         #---------------------------------------------------------
         
         
@@ -45,18 +45,23 @@ class Pencere(QtWidgets.QWidget):
         if not self.kayitli_kutucuk.toPlainText():
             self.kayitli_kutucuk.append(yazi)
             self.yazi_alani.clear()
+            self.kayitli_kutucuk.setDisabled(True)
         
         elif not self.kayitli_kutucuk_2.toPlainText():
             self.kayitli_kutucuk_2.append(yazi)
             self.yazi_alani.clear()
+            self.kayitli_kutucuk_2.setDisabled(True)
         
         elif not self.kayitli_kutucuk_3.toPlainText():
             self.kayitli_kutucuk_3.append(yazi)
             self.yazi_alani.clear()
-        
+            self.kayitli_kutucuk_3.setDisabled(True)
+            
         elif not self.kayitli_kutucuk_4.toPlainText():
             self.kayitli_kutucuk_4.append(yazi)
             self.yazi_alani.clear()
+            self.kayitli_kutucuk_4.setDisabled(True)
+            
         
         else:
             pass    
