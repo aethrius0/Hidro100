@@ -9,34 +9,42 @@ class Pencere(QtWidgets.QWidget):
         
     def init_ui(self):
         
+        self.baslik_1=QtWidgets.QLabel(self)
+        self.baslik_2=QtWidgets.QLabel(self)
+        self.baslik_3=QtWidgets.QLabel(self)
+        self.baslik_4=QtWidgets.QLabel(self)
         self.yazi_alani=QtWidgets.QTextEdit(self)
         self.yazi_alani.setGeometry(10,10,350,400)
         
         #kutucukları ayrı ayrı silme fonksiyonu ve radio butonların tanımları 
-        self.radio_yazisi = QtWidgets.QLabel("Which square you want to clear ")
-        self.temizle1 = QtWidgets.QRadioButton("",self)
-        self.temizle2 = QtWidgets.QRadioButton("",self)
-        self.temizle3 = QtWidgets.QRadioButton("",self)
-        self.temizle4 = QtWidgets.QRadioButton("",self)
-
-        self.write_place = QtWidgets.QLabel("")
+        self.sec1 = QtWidgets.QRadioButton("",self)
+        self.sec2 = QtWidgets.QRadioButton("",self)
+        self.sec3 = QtWidgets.QRadioButton("",self)
+        self.sec4 = QtWidgets.QRadioButton("",self)
         
-        self.buton = QtWidgets.QPushButton("Temizle",self)
-        self.buton.move(460,420)
-
-        self.temizle1.move(380,45)
-        self.temizle2.move(380,150)
-        self.temizle3.move(380,260)
-        self.temizle4.move(380,370)
-        self.buton.clicked.connect(lambda : self.click())
-
-        self.buton_temizle = QtWidgets.QPushButton("SİLECEĞİNİ SEÇ")
+        self.buton_ac=QtWidgets.QPushButton("Aç",self)
+        self.buton_temizle = QtWidgets.QPushButton("Temizle",self)
+        self.buton_kaydet=QtWidgets.QPushButton("Kaydet",self)
         
+        self.buton_temizle.move(500,420)
+        self.buton_ac.move(400,420)
+        self.sec1.move(380,45)
+        self.sec2.move(380,150)
+        self.sec3.move(380,260)
+        self.sec4.move(380,370)
+        self.buton_kaydet.move(150,420)
+        self.baslik_1.move(400,10)
+        self.baslik_2.move(400,115)
+        self.baslik_3.move(400,220)
+        self.baslik_4.move(400,325)
+        
+        self.buton_temizle.clicked.connect(lambda : self.temizle_clicked())
+        self.buton_ac.clicked.connect(self.ac_clicked)
+        self.buton_kaydet.clicked.connect(self.kaydet_clicked)
         
         
         #Sağ tarafta kaydedilen notların olduğu kısım
         self.kayitli_kutucuk=QtWidgets.QTextEdit(self)
-        self.kayitli_kutucuk.move(400,10)
         self.kayitli_kutucuk.setGeometry(400,30,200,60)
         
         self.kayitli_kutucuk_2=QtWidgets.QTextEdit(self)
@@ -49,14 +57,6 @@ class Pencere(QtWidgets.QWidget):
         self.kayitli_kutucuk_4.setGeometry(400,345,200,60)
         #---------------------------------------------------------
         
-        
-        
-        self.buton_kaydet=QtWidgets.QPushButton("Kaydet",self)
-        self.buton_kaydet.move(100,420)
-        
-        
-        self.buton_kaydet.clicked.connect(self.kaydet_clicked)
-
         self.show()
     
         
@@ -86,15 +86,33 @@ class Pencere(QtWidgets.QWidget):
             pass    
 
     #Radio butonlarla beraber tanımlanan click fonksiyonunu kutucukların silimine bağlayan kısım    
-    def click(self):
-        if self.temizle1.isChecked():
+    def temizle_clicked(self):
+        if self.sec1.isChecked():
             self.kayitli_kutucuk.clear()
-        elif self.temizle2.isChecked():
+        elif self.sec2.isChecked():
             self.kayitli_kutucuk_2.clear()
-        elif self.temizle3.isChecked():
+        elif self.sec3.isChecked():
             self.kayitli_kutucuk_3.clear()
-        elif self.temizle4.isChecked():
+        elif self.sec4.isChecked():
             self.kayitli_kutucuk_4.clear()
+
+    def ac_clicked(self):
+        if self.sec1.isChecked():
+            ac_text = self.kayitli_kutucuk.toPlainText()
+            self.yazi_alani.setPlainText(ac_text)
+        elif self.sec2.isChecked():
+            ac_text2 = self.kayitli_kutucuk_2.toPlainText()
+            self.yazi_alani.setPlainText(ac_text2)
+        elif self.sec3.isChecked():
+            ac_text3 = self.kayitli_kutucuk_3.toPlainText()
+            self.yazi_alani.setPlainText(ac_text3)
+        elif self.sec4.isChecked():
+            ac_text4 = self.kayitli_kutucuk_4.toPlainText()
+            self.yazi_alani.setPlainText(ac_text4)
+            
+
+
+ 
 
 
 app=QtWidgets.QApplication(sys.argv)
