@@ -11,10 +11,14 @@ Rectangle {
 
     CircularGauge {
         objectName: "test_gauge"
-        property real gauge_value: 60
-        anchors.centerIn: parent
+        property real gauge_value: 70
+        width:500 // göstergenin büyüklük kare olcak
+        height:500
+        //anchors.centerIn: parent
+        x:60   //hız göstergesinin koordinatları
+        y:60
         value: gauge_value
-        maximumValue: 60.0  // Largest Value
+        maximumValue: 70.0  // Largest Value
         minimumValue: 0.0       // Smallest Value
         style: CircularGaugeStyle {
             id: style
