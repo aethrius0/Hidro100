@@ -10,8 +10,8 @@ from PyQt5.QtQuick import QQuickView
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     view = QQuickView()
-    view.setSource(QUrl('qml.qml'))
+    view.setSource(QUrl('speedometer.qml'))
     gauge=view.findChild(QObject,'test_gauge')
-    gauge.setProperty('gauge_value',4500)
+    gauge.setProperty('gauge_value',0)
     view.show()
     sys.exit(app.exec_())
