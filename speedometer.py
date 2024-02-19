@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QApplication
 from PyQt5.QtQml import QQmlApplicationEngine, qmlRegisterType, QQmlEngine, QQmlComponent
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtQuick import QQuickView
+#deneme
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
