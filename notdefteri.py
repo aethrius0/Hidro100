@@ -2,6 +2,8 @@ import sys
 from PyQt5 import QtWidgets 
 
 # Yusuf Ekledi 2
+#aaaaaa
+#aaa
 
 class Pencere(QtWidgets.QWidget):
     def __init__(self):
