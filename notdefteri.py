@@ -4,6 +4,7 @@ from PyQt5 import QtWidgets
 # Yusuf Ekledi 2
 #aaaaaa
 #aaa
+#aaaaaaaaa
 
 class Pencere(QtWidgets.QWidget):
     def __init__(self):
