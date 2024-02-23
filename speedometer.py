@@ -3,6 +3,7 @@ import random
 from PyQt5.QtCore import QObject, QUrl, QTimer, QVariantAnimation
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtQuick import QQuickView
+#deneme
 
 class Speedometer(QObject):
     def __init__(self, parent=None):
