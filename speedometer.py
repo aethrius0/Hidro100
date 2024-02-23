@@ -63,7 +63,7 @@ class Speedometer(QObject):
         self.current_temp = self.target_temp
         
     def updateValueWatt(self):
-        self.target_watt = random.randint(0, 100)
+        self.target_watt = random.randint(0, 24)
         self.anim_watt = QVariantAnimation()
         self.anim_watt.setStartValue(self.current_watt)
         self.anim_watt.setEndValue(self.target_watt)
@@ -73,7 +73,7 @@ class Speedometer(QObject):
         self.current_watt = self.target_watt
         
     def updateValueVolt(self):
-        self.target_volt = random.randint(0, 24)
+        self.target_volt = random.randint(0, 100)
         self.anim_volt = QVariantAnimation()
         self.anim_volt.setStartValue(self.current_volt)
         self.anim_volt.setEndValue(self.target_volt)
