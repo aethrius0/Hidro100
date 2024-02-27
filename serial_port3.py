@@ -4,10 +4,35 @@ from PyQt5.QtSerialPort import QSerialPortInfo, QSerialPort
 
 
 class Window(QMainWindow):
+    
+    class CircularBuffer:
+        def __init__(self,size):
+            self.size=size
+            self.buffer=[None]* size
+            self.head = 0
+            self.tail = 0
+            self.full = False
+
+        def add(self,item):
+            self.buffer[self.head]= item
+            self.head = (self.head + 1) % self.size
+            if self.head == self.tail:
+                self.tail=(self.tail + 1) % self.size
+                self.full= True
+        
+        def get(self):
+            if not self.full:
+                return None
+            
+            item= self.buffer[self.tail]
+            self.tail= (self.tail + 1) % self.size
+            self.full = self.head != self.tail
+            return item
 
     def __init__(self):
         super().__init__()
         self.serialPort = QSerialPort()
+        self.buffer = self.CircularBuffer(3)
         self.initUI()
         self.listSerialports()
 
@@ -45,7 +70,25 @@ class Window(QMainWindow):
             self.pushButtonSend.setEnabled(False)
 
     def portDataReceived(self):
-        self.textEditReceiveData.append(self.serialPort.readAll().data().decode())
+        # seri porttan gelen veriyi okur
+        data = self.serialPort.readAll()
+        self.buffer.add(data.data())
+        
+        #buffer doluysa veriyi işle
+        if self.buffer.full:
+            #veri depolamak için array
+            received_data = bytearray()
+            
+            while self.buffer.full:
+                received_data += self.buffer.get()
+            
+            # veriyi string olarak çözelim
+            data_int = received_data.decode()
+
+            # veriyi ekrana gönderir
+            self.textEditReceiveData.append(data_int)
+
+        
 
     def initUI(self):
 
@@ -93,6 +136,8 @@ class Window(QMainWindow):
         self.pushButtonDisconnect.clicked.connect(self.portDisconnect)
         self.pushButtonSend.clicked.connect(self.portSendData)
         self.serialPort.readyRead.connect(self.portDataReceived)
+
+
 
 
 if __name__ == "__main__":
