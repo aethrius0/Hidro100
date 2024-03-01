@@ -16,9 +16,7 @@ class Window(QMainWindow):
         def add(self,item):
             self.buffer[self.head]= item
             self.head = (self.head + 1) % self.size
-            if self.head == self.tail:
-                self.tail=(self.tail + 1) % self.size
-                self.full= True
+            self.full= self.head == self.tail
         
         def get(self):
             if not self.full:
@@ -32,7 +30,7 @@ class Window(QMainWindow):
     def __init__(self):
         super().__init__()
         self.serialPort = QSerialPort()
-        self.buffer = self.CircularBuffer(3)
+        self.buffer = self.CircularBuffer(4)
         self.initUI()
         self.listSerialports()
 
