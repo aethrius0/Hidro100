@@ -53,7 +53,7 @@ Rectangle {
                     implicitWidth: outerRadius * 0.02
                     antialiasing: true
                     implicitHeight: outerRadius * 0.1
-                    color: styleData.value >= 8000 ? "#ff0000" : "#ff0000"
+                    color: styleData.value >= 8000 ? "#ffffff" : "#ffffff"
                }
 
                minorTickmark: Rectangle {
@@ -61,13 +61,13 @@ Rectangle {
                     implicitWidth: outerRadius * 0.01
                     antialiasing: true
                     implicitHeight: outerRadius * 0.03
-                    color: "#ff0000"
+                    color: "#0000FF"
                }
 
                tickmarkLabel:  Text {
                     font.pixelSize: Math.max(6, outerRadius * 0.1)
                     text: styleData.value
-                    color: styleData.value >= 8000 ? "#ff0000" : "#ff0000"
+                    color: styleData.value >= 8000 ? "#ffffff" : "#ffffff"
                     antialiasing: true
                }
 
@@ -266,6 +266,18 @@ Rectangle {
                     }
                }
           }
+     }
+
+     // Volt göstergesi için
+     Text {
+         id: volt_text
+         color: "white"
+         font.pixelSize: 20
+         anchors {
+             horizontalCenter: bt_gauge.horizontalCenter
+             bottom: bt_gauge.bottom
+             bottomMargin: 20
+         }
      }
 
      //bt gauge
