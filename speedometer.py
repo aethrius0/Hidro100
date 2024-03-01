@@ -1,12 +1,18 @@
 import sys
 import random
 from PyQt5.QtCore import QObject, QUrl, QTimer, QVariantAnimation
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication,QLabel,QGraphicsView, QGraphicsScene
 from PyQt5.QtQuick import QQuickView
+from PyQt5.QtGui import QPixmap
 
 class Speedometer(QObject):
     def __init__(self, parent=None):
         super().__init__(parent)
+        
+        self.UI()
+
+        
+    def UI(self):
         
         self.timer_speed = QTimer(self)
         self.timer_battery = QTimer(self)
@@ -96,6 +102,7 @@ class Speedometer(QObject):
         
     def setVolt(self, value):
         gauge5.setProperty('btgauge_value', value)
+        
 
 class SpeedometerApp(QApplication):
     def __init__(self, argv):

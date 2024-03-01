@@ -9,6 +9,14 @@ Rectangle {
      height: 560
      color: "#000000"
 
+     
+    Image {
+        source: "hidroket-logo.png" 
+        anchors.fill: parent 
+        opacity: 0.17
+        
+     }
+
      Row {
 
           spacing: 10
@@ -91,6 +99,7 @@ Rectangle {
           }
      }
 
+    
      // İkinci CircularGauge bileşeni
      CircularGauge {
           objectName: "wh_gauge"
@@ -148,6 +157,7 @@ Rectangle {
                }
           }
      }
+     
      CircularGauge {
           objectName: "temp_gauge"
           width: 210
@@ -204,6 +214,7 @@ Rectangle {
                }
           }
      }
+    
      //Voltmeter gauge
      //
      CircularGauge {
@@ -268,18 +279,7 @@ Rectangle {
           }
      }
 
-     // Volt göstergesi için
-     Text {
-         id: volt_text
-         color: "white"
-         font.pixelSize: 20
-         anchors {
-             horizontalCenter: bt_gauge.horizontalCenter
-             bottom: bt_gauge.bottom
-             bottomMargin: 20
-         }
-     }
-
+     
      //bt gauge
      CircularGauge {
             objectName: "bt_gauge"
