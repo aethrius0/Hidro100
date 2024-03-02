@@ -1,4 +1,4 @@
-byte_object = "135168468416165146854986794865"
+byte_object = "19846598659865159864"
 
 def Check_data(byte_object):
     if isinstance(byte_object,bytes):
@@ -21,11 +21,11 @@ def parse_by_object(byte_object):
 
 def Getvalues(formatted_data):
     # Parçalanan veriyi alarak değerleri ayıkla ve adlandır
-    volt = float(formatted_data[0][2:])
-    temperature = float(formatted_data[1][2:])
-    SoC = float(formatted_data[2][:2])
-    wh = float(formatted_data[3][:2])
-    speed = float(formatted_data[4][:2])
+    volt = float(formatted_data[0].replace(',', '.'))
+    temperature = float(formatted_data[1].replace(',', '.'))
+    SoC = float(formatted_data[2].replace(',', '.'))
+    wh = float(formatted_data[3].replace(',', '.'))
+    speed = float(formatted_data[4].replace(',', '.'))
     
     return volt, temperature, SoC, wh, speed
 
