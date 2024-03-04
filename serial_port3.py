@@ -62,19 +62,25 @@ class SerialCommunication:
 
     def portDataReceived(self):
         # seri porttan gelen veriyi okur
-        data = self.serialPort.readAll()
-        self.buffer.add(data.data())
+        bytes_available = self.serialPort.bytesAvailable()
         
-        #buffer doluysa veriyi işle
-        if self.buffer.full:
-            #veri depolamak için array
-            received_data = bytearray()
-            
-            while self.buffer.full:
-                received_data += self.buffer.get()
-            
-            data_str = received_data.decode()
-            print(data_str)
+        if bytes_available > 0:
+            data = self.serialPort.read(bytes_available)
+            self.buffer.add(data)
+            #buffer doluysa veriyi işle
+            if self.buffer.full:
+                #veri depolamak için array
+                received_data = bytearray()
+                
+                while self.buffer.full:
+                    received_data += self.buffer.get()
+                
+                while len(received_data) >= 8:
+                    packet = received_data[:8]   
+                    received_data = received_data[8:] 
+                    packet_str = packet.decode()  
+                    print(packet_str)
+                
 
 if __name__ == "__main__":
     app = QCoreApplication(sys.argv)
@@ -96,7 +102,7 @@ if __name__ == "__main__":
 
         serial_communication.portDisconnect()
         print("Disconnected from port.")
-        
+
     else:
         print("No serial ports available.")
 
