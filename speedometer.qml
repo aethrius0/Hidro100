@@ -1,5 +1,5 @@
-import QtQuick 2.0
-import QtQuick.Controls 1.4
+import QtQuick 2.12
+import QtQuick.Controls 2.12
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Extras 1.4
 import QtQuick.Extras.Private 1.0
@@ -26,19 +26,51 @@ Rectangle {
                horizontalCenter: parent.horizontalCenter // Yatay olarak merkezleme
           }
 
-          // 15 kutucuk oluşturma
+
+
+       
+
+          TextField { id: textField1; objectName: "textField1"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+          TextField { id: textField2; objectName: "textField2"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+          TextField { id: textField3; objectName: "textField3"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+          TextField { id: textField4; objectName: "textField4"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+          TextField { id: textField5; objectName: "textField5"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+          TextField { id: textField6; objectName: "textField6"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+          TextField { id: textField7; objectName: "textField7"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+          TextField { id: textField8; objectName: "textField8"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+          TextField { id: textField9; objectName: "textField9"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+          TextField { id: textField10; objectName: "textField10"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+          TextField { id: textField11; objectName: "textField11"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+          TextField { id: textField12; objectName: "textField12"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+          TextField { id: textField13; objectName: "textField13"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+          TextField { id: textField14; objectName: "textField14"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+          TextField { id: textField15; objectName: "textField15"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+
+
+          
+
+          /*// 15 kutucuk oluşturma
           Repeater {
                model: 15
                Rectangle {
+                    
                     width: 50
                     height: 30
                     border.color: "blue" // Çerçeve rengi
                     border.width: 2 // Çerçeve kalınlığı
-                    color: "transparent" // İçi boş kutucuk
+                    color: "white" // İçi boş kutucuk
                     // Diğer özelliklerini buraya ekleyebilirsiniz
+                    Text{
+                         
+                         anchors.centerIn: parent
+                         
+                         color: "black"
+                    }
                }
-          }
+
+          } */
      }
+     
     
     
      CircularGauge {
@@ -344,4 +376,3 @@ Rectangle {
      }
      
 }
-
