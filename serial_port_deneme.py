@@ -50,7 +50,7 @@ if __name__ == "__main__":
                 # Veriyi döngüsel tampona ekle
                 circular_buffer.append(received_data)
 
-                
+                # Tamponun dolu olduğu sürece 8 baytlık paketler al
                 while circular_buffer.full:
                     packet = circular_buffer.pop_packet(packet_size)
                     if packet:
