@@ -30,21 +30,32 @@ Rectangle {
 
        
 
-          TextField { id: textField1; objectName: "textField1"; width:50; height: 30; font.pixelSize: 14; color: "white" }
-          TextField { id: textField2; objectName: "textField2"; width:50; height: 30; font.pixelSize: 14; color: "white" }
-          TextField { id: textField3; objectName: "textField3"; width:50; height: 30; font.pixelSize: 14; color: "white" }
-          TextField { id: textField4; objectName: "textField4"; width:50; height: 30; font.pixelSize: 14; color: "white" }
-          TextField { id: textField5; objectName: "textField5"; width:50; height: 30; font.pixelSize: 14; color: "white" }
-          TextField { id: textField6; objectName: "textField6"; width:50; height: 30; font.pixelSize: 14; color: "white" }
-          TextField { id: textField7; objectName: "textField7"; width:50; height: 30; font.pixelSize: 14; color: "white" }
-          TextField { id: textField8; objectName: "textField8"; width:50; height: 30; font.pixelSize: 14; color: "white" }
-          TextField { id: textField9; objectName: "textField9"; width:50; height: 30; font.pixelSize: 14; color: "white" }
-          TextField { id: textField10; objectName: "textField10"; width:50; height: 30; font.pixelSize: 14; color: "white" }
-          TextField { id: textField11; objectName: "textField11"; width:50; height: 30; font.pixelSize: 14; color: "white" }
-          TextField { id: textField12; objectName: "textField12"; width:50; height: 30; font.pixelSize: 14; color: "white" }
-          TextField { id: textField13; objectName: "textField13"; width:50; height: 30; font.pixelSize: 14; color: "white" }
-          TextField { id: textField14; objectName: "textField14"; width:50; height: 30; font.pixelSize: 14; color: "white" }
-          TextField { id: textField15; objectName: "textField15"; width:50; height: 30; font.pixelSize: 14; color: "white" }
+          TextField{
+                id: textField
+                text:""
+                property real textField : 0
+                objectName: "textField1"; width:50; height: 30; font.pixelSize: 14; color: "black" }
+          TextField { 
+               id: textField2; 
+               text: ""
+               objectName: "textField2"; 
+               width:50; 
+               height: 30; 
+               font.pixelSize: 14; 
+               color: "black" }
+          TextField { id: textField3; objectName: "textField3"; width:50; height: 30; font.pixelSize: 14; color: "black" }
+          TextField { id: textField4; objectName: "textField4"; width:50; height: 30; font.pixelSize: 14; color: "black" }
+          TextField { id: textField5; objectName: "textField5"; width:50; height: 30; font.pixelSize: 14; color: "black" }
+          TextField { id: textField6; objectName: "textField6"; width:50; height: 30; font.pixelSize: 14; color: "black" }
+          TextField { id: textField7; objectName: "textField7"; width:50; height: 30; font.pixelSize: 14; color: "black" }
+          TextField { id: textField8; objectName: "textField8"; width:50; height: 30; font.pixelSize: 14; color: "black" }
+          TextField { id: textField9; objectName: "textField9"; width:50; height: 30; font.pixelSize: 14; color: "black" }
+          TextField { id: textField10; objectName: "textField10"; width:50; height: 30; font.pixelSize: 14; color: "black" }
+          TextField { id: textField11; objectName: "textField11"; width:50; height: 30; font.pixelSize: 14; color: "black" }
+          TextField { id: textField12; objectName: "textField12"; width:50; height: 30; font.pixelSize: 14; color: "black" }
+          TextField { id: textField13; objectName: "textField13"; width:50; height: 30; font.pixelSize: 14; color: "black" }
+          TextField { id: textField14; objectName: "textField14"; width:50; height: 30; font.pixelSize: 14; color: "black" }
+          TextField { id: textField15; objectName: "textField15"; width:50; height: 30; font.pixelSize: 14; color: "black" }
 
 
           
