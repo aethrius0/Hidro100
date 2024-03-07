@@ -48,7 +48,7 @@ class Speedometer(QObject):
                 textField = self.view.findChild(QObject, f"textField{i}")
                 if textField:
                     value = random.randint(0, 100)
-                    textField.setProperty("text", str(value))
+                    textField.setProperty("text", value)
         
         
 
