@@ -1,4 +1,5 @@
 import serial
+import serial.tools.list_ports
 
 class CircularBuffer:
     def __init__(self, size):
@@ -32,12 +33,20 @@ class CircularBuffer:
             return None
 
 if __name__ == "__main__":
-    serial_port = "COM15"  # Kullanılacak seri portu buraya girin
+    # Kullanılabilir seri portları listele
+    ports = serial.tools.list_ports.comports()
+    print("Kullanilabilir seri portlar:")
+    for idx, port in enumerate(ports, start=1):
+        print(f"{idx}: {port.device}")
+
+    # Kullanıcıdan seri port seçmesini iste
+    selection = int(input("Baglanmak istediginiz seri portun numarasini girin: ")) - 1
+    selected_port = ports[selection].device
     baud_rate = 9600  # Seri port iletişim hızı
     packet_size = 8  # Paket boyutu
 
     # Seri port bağlantısını oluştur
-    ser = serial.Serial(serial_port, baud_rate)
+    ser = serial.Serial(selected_port, baud_rate)
 
     # 8 baytlık bir döngüsel tampon oluştur
     circular_buffer = CircularBuffer(8)
@@ -54,9 +63,14 @@ if __name__ == "__main__":
                 while circular_buffer.full:
                     packet = circular_buffer.pop_packet(packet_size)
                     if packet:
-                        print("Alınan paket:", packet)
+                        print("Alinan paket:", packet)
+                        
+                        hex_packet = " ".join([hex(byte) for byte in packet])
+                        print("hex paket:", hex_packet)
+
                     else:
                         break
     except KeyboardInterrupt:
-        print("Program kapatıldı.")
-        ser.close()
+        # ctrl+c yapınca kapanır
+        print("Program kapatildi.")
+        ser.close()   
