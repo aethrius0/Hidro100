@@ -17,6 +17,7 @@ class Speedometer(QObject):
         self.timer_temp = QTimer(self)
         self.timer_watt = QTimer(self)
         self.timer_volt = QTimer(self)
+        self.timer_updateTextField = QTimer(self)
        
 
         self.timer_speed.timeout.connect(self.updateValueSpeed)
@@ -24,6 +25,7 @@ class Speedometer(QObject):
         self.timer_temp.timeout.connect(self.updateValueTemp)
         self.timer_watt.timeout.connect(self.updateValueWatt)
         self.timer_volt.timeout.connect(self.updateValueVolt)
+        self.timer_updateTextField.timeout.connect(self.updateTextFieldValues)
         
 
         self.timer_speed.start(1000)
@@ -31,6 +33,8 @@ class Speedometer(QObject):
         self.timer_temp.start(1000)
         self.timer_watt.start(1000)
         self.timer_volt.start(1000)
+        self.timer_updateTextField.start(1000)
+        
         
 
         self.current_speed = 0
@@ -42,13 +46,101 @@ class Speedometer(QObject):
         
         
     def updateTextFieldValues(self):
-        # QML'deki tüm TextField'lara rastgele değer atama
+        
         if self.view:
-            for i in range(1, 16):
-                textField = self.view.findChild(QObject, f"textField{i}")
-                if textField:
-                    value = random.randint(0, 100)
-                    textField.setProperty("text", value)
+            
+            textField1 = self.view.findChild(QObject, "textField1")
+            
+            textField2 = self.view.findChild(QObject, "textField2")
+            
+            textField3 = self.view.findChild(QObject, "textField3")
+            
+            textField4 = self.view.findChild(QObject, "textField4")
+            
+            textField5 = self.view.findChild(QObject, "textField5")
+            
+            textField6 = self.view.findChild(QObject, "textField6")
+            
+            textField7 = self.view.findChild(QObject, "textField7")
+            
+            textField8 = self.view.findChild(QObject, "textField8")
+            
+            textField9 = self.view.findChild(QObject, "textField9")
+            
+            textField10 = self.view.findChild(QObject, "textField10")
+            
+            textField11 = self.view.findChild(QObject, "textField11")
+            
+            textField12 = self.view.findChild(QObject, "textField12")
+            
+            textField13 = self.view.findChild(QObject, "textField13")
+            
+            textField14 = self.view.findChild(QObject, "textField14")
+            
+            textField15 = self.view.findChild(QObject, "textField15")
+            
+            
+            
+            if textField1:
+                value = random.randint(0, 100)
+                textField1.setProperty("text", value)
+                
+            if textField2:
+                value = random.randint(0, 100)
+                textField2.setProperty("text", value)
+                
+            if textField3:
+                value = random.randint(0, 100)
+                textField3.setProperty("text", value)
+                
+            if textField4:
+                value = random.randint(0, 100)
+                textField4.setProperty("text", value)
+                
+            if textField5:
+                value = random.randint(0, 100)
+                textField5.setProperty("text", value)
+                
+            if textField6:
+                value = random.randint(0, 100)
+                textField6.setProperty("text", value)
+                
+            if textField7:
+                value = random.randint(0, 100)
+                textField7.setProperty("text", value)
+                
+            if textField8:
+                value = random.randint(0, 100)
+                textField8.setProperty("text", value)
+                
+            if textField9:
+                value = random.randint(0, 100)
+                textField9.setProperty("text", value)
+                
+            if textField10:
+                value = random.randint(0, 100)
+                textField10.setProperty("text", value)
+                
+            if textField11:
+                value = random.randint(0, 100)
+                textField11.setProperty("text", value)
+                
+            if textField12:
+                value = random.randint(0, 100)
+                textField12.setProperty("text", value)
+                
+            if textField13:
+                value = random.randint(0, 100)
+                textField13.setProperty("text", value)
+                
+            if textField14:
+                value = random.randint(0, 100)
+                textField14.setProperty("text", value)
+                
+            if textField15:
+                value = random.randint(0, 100)
+                textField15.setProperty("text", value)
+            
         
         
 
@@ -135,16 +227,13 @@ class SpeedometerApp(QApplication):
         
 
     def run(self):
+        
         global gauge, gauge2, gauge3, gauge4, gauge5
         gauge = self.view.findChild(QObject, 'speed_gauge')
         gauge2 = self.view.findChild(QObject, 'wh_gauge')
         gauge3 = self.view.findChild(QObject, 'temp_gauge')
         gauge4 = self.view.findChild(QObject, 'volt_gauge')
         gauge5 = self.view.findChild(QObject, 'bt_gauge')
-        
-        
-        
-       
         
 
         self.view.show()
@@ -154,5 +243,5 @@ class SpeedometerApp(QApplication):
 
 if __name__ == "__main__":
     app = SpeedometerApp(sys.argv)
-    
+ 
     sys.exit(app.run())
