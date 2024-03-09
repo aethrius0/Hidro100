@@ -66,7 +66,7 @@ if __name__ == "__main__":
                         print("Alinan paket:", packet)
                         
                         hex_packet = " ".join([hex(byte) for byte in packet])
-                        print("hex paket:", hex_packet)
+                        print("Hex paket:", hex_packet)
 
                     else:
                         break
