@@ -1,6 +1,10 @@
 import serial
 import serial.tools.list_ports
 
+baud_rate = 9600  # Seri port iletişim hızı
+packet_size = 8  # Paket boyutu
+buffer_size= 8 # Buffer boyutu
+
 class CircularBuffer:
     def __init__(self, size):
         self.size = size
@@ -16,7 +20,7 @@ class CircularBuffer:
                 self.end = (self.end + 1) % self.size
                 if self.end == self.start:
                     self.full = True
-
+    # paket oluşturur
     def pop_packet(self, packet_size):
         packet = bytearray()
         while len(packet) < packet_size:
@@ -42,14 +46,13 @@ if __name__ == "__main__":
     # Kullanıcıdan seri port seçmesini iste
     selection = int(input("Baglanmak istediginiz seri portun numarasini girin: ")) - 1
     selected_port = ports[selection].device
-    baud_rate = 9600  # Seri port iletişim hızı
-    packet_size = 8  # Paket boyutu
+
 
     # Seri port bağlantısını oluştur
     ser = serial.Serial(selected_port, baud_rate)
 
-    # 8 baytlık bir döngüsel tampon oluştur
-    circular_buffer = CircularBuffer(8)
+    # istenilen boyutta bir döngüsel tampon oluştur
+    circular_buffer = CircularBuffer(buffer_size)
 
     try:
         while True:
@@ -64,9 +67,12 @@ if __name__ == "__main__":
                     packet = circular_buffer.pop_packet(packet_size)
                     if packet:
                         print("Alinan paket:", packet)
-                        
+                        # bayt paketlerini hexadecimal olarak düzenli şekilde yazar
                         hex_packet = " ".join([hex(byte) for byte in packet])
                         print("Hex paket:", hex_packet)
+                        # bayt paketlerini decimale çevirir
+                        decimal_packet = [int(byte) for byte in packet]
+                        print("Decimal paket:", decimal_packet)
 
                     else:
                         break
