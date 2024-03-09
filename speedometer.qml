@@ -13,73 +13,239 @@ Rectangle {
     Image {
         source: "hidroket-logo.png" 
         anchors.fill: parent 
-        opacity: 0.17
+        opacity: 0.3
+        
         
      }
 
      Row {
-
+         
           spacing: 10
           anchors {
+               
                //top: speed_gauge.bottom // Ana bileşenin altından başlasın
                bottom: parent.bottom // Ana bileşenin alt kısmına hizalama
                horizontalCenter: parent.horizontalCenter // Yatay olarak merkezleme
           }
+         
+          
 
-
-
-       
+     /* Arayüzün aşağısındaki TextField Kutucukları */
 
           TextField{
-                id: textField
-                text:""
-                property real textField : 0
-                objectName: "textField1"; width:50; height: 30; font.pixelSize: 14; color: "black" }
-          TextField { 
+               id: textField1
+               text:""
+               objectName: "textField1"; 
+               width:50; 
+               height: 30; 
+               font.pixelSize: 14; 
+               color: "white"; 
+               background: Color.transparent
+               
+               Text{
+                    anchors.top: parent.top
+                    anchors.topMargin: -10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 6
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "CELL 1"
+                    color: "white"
+               }
+          }
+
+          TextField{ 
                id: textField2; 
                text: ""
                objectName: "textField2"; 
                width:50; 
                height: 30; 
                font.pixelSize: 14; 
-               color: "black" }
-          TextField { id: textField3; objectName: "textField3"; width:50; height: 30; font.pixelSize: 14; color: "black" }
-          TextField { id: textField4; objectName: "textField4"; width:50; height: 30; font.pixelSize: 14; color: "black" }
-          TextField { id: textField5; objectName: "textField5"; width:50; height: 30; font.pixelSize: 14; color: "black" }
-          TextField { id: textField6; objectName: "textField6"; width:50; height: 30; font.pixelSize: 14; color: "black" }
-          TextField { id: textField7; objectName: "textField7"; width:50; height: 30; font.pixelSize: 14; color: "black" }
-          TextField { id: textField8; objectName: "textField8"; width:50; height: 30; font.pixelSize: 14; color: "black" }
-          TextField { id: textField9; objectName: "textField9"; width:50; height: 30; font.pixelSize: 14; color: "black" }
-          TextField { id: textField10; objectName: "textField10"; width:50; height: 30; font.pixelSize: 14; color: "black" }
-          TextField { id: textField11; objectName: "textField11"; width:50; height: 30; font.pixelSize: 14; color: "black" }
-          TextField { id: textField12; objectName: "textField12"; width:50; height: 30; font.pixelSize: 14; color: "black" }
-          TextField { id: textField13; objectName: "textField13"; width:50; height: 30; font.pixelSize: 14; color: "black" }
-          TextField { id: textField14; objectName: "textField14"; width:50; height: 30; font.pixelSize: 14; color: "black" }
-          TextField { id: textField15; objectName: "textField15"; width:50; height: 30; font.pixelSize: 14; color: "black" }
+               color: "white";
+               background: Color.transparent
+               Text{
+                    anchors.top: parent.top
+                    anchors.topMargin: -10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 6
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "CELL 2"
+                    color: "white"
+               }
+          }
+          TextField 
+          { 
+               id: textField3; objectName: "textField3"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               Text{
+                    anchors.top: parent.top
+                    anchors.topMargin: -10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 6
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "CELL 3"
+                    color: "white"
+               }
+          }
+          TextField 
+          { 
+               id: textField4; objectName: "textField4"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent
+               Text{
+                    anchors.top: parent.top
+                    anchors.topMargin: -10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 6
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "CELL 4"
+                    color: "white"
+               } 
+          }
+          TextField 
+          { 
+               id: textField5; objectName: "textField5"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent
+               Text{
+                    anchors.top: parent.top
+                    anchors.topMargin: -10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 6
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "CELL 5"
+                    color: "white"
+               } 
+          }
+          TextField 
+          { 
+               id: textField6; objectName: "textField6"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent
+               Text{
+                    anchors.top: parent.top
+                    anchors.topMargin: -10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 6
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "CELL 6"
+                    color: "white"
+               }
+          }
+          TextField 
+          { 
+               id: textField7; objectName: "textField7"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               Text{
+                    anchors.top: parent.top
+                    anchors.topMargin: -10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 6
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "CELL 7"
+                    color: "white"
+               }
+          }
+          TextField 
+          { 
+               id: textField8; objectName: "textField8"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               Text{
+                    anchors.top: parent.top
+                    anchors.topMargin: -10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 6
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "CELL 8"
+                    color: "white"
+               }
+          }
+          TextField 
+          { 
+               id: textField9; objectName: "textField9"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               Text{
+                    anchors.top: parent.top
+                    anchors.topMargin: -10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 6
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "CELL 9"
+                    color: "white"
+               }
+          }
+          TextField 
+          { 
+               id: textField10; objectName: "textField10"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               Text{
+                    anchors.top: parent.top
+                    anchors.topMargin: -10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 6
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "CELL 10"
+                    color: "white"
+               }
+          }
+          TextField 
+          { 
+               id: textField11; objectName: "textField11"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               Text{
+                    anchors.top: parent.top
+                    anchors.topMargin: -10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 6
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "CELL 11"
+                    color: "white"
+               }
+          }
+          TextField 
+          { 
+               id: textField12; objectName: "textField12"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               Text{
+                    anchors.top: parent.top
+                    anchors.topMargin: -10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 6
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "CELL 12"
+                    color: "white"
+               }
+          }
+          TextField 
+          { 
+               id: textField13; objectName: "textField13"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               Text{
+                    anchors.top: parent.top
+                    anchors.topMargin: -10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 6
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "CELL 13"
+                    color: "white"
+               }
+          }
+          TextField 
+          { 
+               id: textField14; objectName: "textField14"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               Text{
+                    anchors.top: parent.top
+                    anchors.topMargin: -10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 6
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "CELL 14"
+                    color: "white"
+               }
+               }
+          TextField 
+          { 
+               id: textField15; objectName: "textField15"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               Text{
+                    anchors.top: parent.top
+                    anchors.topMargin: -10
+                    anchors.right: parent.right
+                    anchors.rightMargin: 6
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: "CELL 15"
+                    color: "white"
+               }
+          }
 
-
+     
           
 
-          /*// 15 kutucuk oluşturma
-          Repeater {
-               model: 15
-               Rectangle {
-                    
-                    width: 50
-                    height: 30
-                    border.color: "blue" // Çerçeve rengi
-                    border.width: 2 // Çerçeve kalınlığı
-                    color: "white" // İçi boş kutucuk
-                    // Diğer özelliklerini buraya ekleyebilirsiniz
-                    Text{
-                         
-                         anchors.centerIn: parent
-                         
-                         color: "black"
-                    }
-               }
-
-          } */
+          
      }
      
     
@@ -87,14 +253,30 @@ Rectangle {
      CircularGauge {
           objectName: "speed_gauge"
           property real speedgauge_value: 0
-          width:400 // göstergenin büyüklük kare olcak
-          height:400
+          width:370 // göstergenin büyüklük kare olcak
+          height:370
           //anchors.centerIn: parent
           x:60   //hız göstergesinin koordinatları
-          y:60
+          y:20
           value: speedgauge_value
           maximumValue: 70.0  // Largest Value
           minimumValue: 0.0       // Smallest Value
+          
+          
+          // Değerin gösterildiği metin
+          Text {
+               id:textFieldSpeed
+               objectName: "textFieldSpeed"
+               
+               font.pixelSize: 24 // Yazı boyutu
+               color: "white" // Yazı rengi
+               anchors.horizontalCenter: parent.horizontalCenter // Yatay hizalama
+               anchors.top: parent.bottom // Üst kenarın altına hizalama
+               anchors.topMargin: -100 // Üst kenarın altına boşluk bırakma
+               
+               
+          }
+                  
           style: CircularGaugeStyle {
           id: style
           tickmarkStepSize: 5.0 // Tick Marks

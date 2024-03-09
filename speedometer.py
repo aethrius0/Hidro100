@@ -80,6 +80,12 @@ class Speedometer(QObject):
             textField15 = self.view.findChild(QObject, "textField15")
             
             
+            textFieldSpeed= self.view.findChild(QObject,"textFieldSpeed")
+            
+            
+         
+            
+            
             
             if textField1:
                 value = random.randint(0, 100)
@@ -141,6 +147,11 @@ class Speedometer(QObject):
                 value = random.randint(0, 100)
                 textField15.setProperty("text", value)
             
+             
+            if textFieldSpeed:
+                speed_text = str(self.current_speed) + " km/h"
+                textFieldSpeed.setProperty("text", speed_text)  
+            
         
         
 
@@ -154,6 +165,13 @@ class Speedometer(QObject):
         self.anim_speed.valueChanged.connect(self.setSpeed)
         self.anim_speed.start()
         self.current_speed = self.target_speed
+        
+            
+            
+            
+        
+        
+        
 
     def updateValueBattery(self):
         self.target_battery = random.randint(0, 100)
@@ -195,9 +213,9 @@ class Speedometer(QObject):
         self.anim_volt.start()
         self.current_volt = self.target_volt
 
-    def setSpeed(self, value):
+    def setSpeed(self, value):      
         gauge.setProperty('speedgauge_value', value)
-
+      
     def setBattery(self, value):
         gauge2.setProperty('whgauge_value', value)
 
@@ -216,6 +234,7 @@ class SpeedometerApp(QApplication):
     def __init__(self, argv):
         super().__init__(argv)
         self.view = QQuickView()
+        self.view.setTitle("Vehicle Panel")
         self.view.setSource(QUrl('speedometer.qml'))
         self.speedometer = Speedometer()
         
@@ -243,5 +262,6 @@ class SpeedometerApp(QApplication):
 
 if __name__ == "__main__":
     app = SpeedometerApp(sys.argv)
+    
  
     sys.exit(app.run())
