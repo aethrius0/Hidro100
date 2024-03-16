@@ -1,4 +1,5 @@
 import sys
+import os
 import random
 from PyQt5.QtCore import QObject, QUrl, QTimer, QVariantAnimation, QThread, pyqtSignal
 from PyQt5.QtCore import pyqtProperty
@@ -29,6 +30,7 @@ class Speedometer(QObject):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.view=None
+        self.time=9000
         
         
         self.timer_speed = QTimer(self)
@@ -66,12 +68,31 @@ class Speedometer(QObject):
         self.data_thread = WorkerThread()
         self.data_thread.thread_signal.connect(self.data_thread_handler)
 
-
+        
+        
+        
+        
+        self.clear_log_file()
+        
         
     def data_thread_handler(self, data):
-        print(f"DATA IS: {data}")
+        self.time+=1000
+        
+        with open("log.txt", "a") as log_file:
+           
+            print(f"   {self.time};   {float((veri_isleme.Speed(data))[0])};  {float((veri_isleme.temperature(data))[0])};   {float((veri_isleme.volt_general(data))[0])};  {float((veri_isleme.Wh(data))[0])}", file=log_file)
         self.__data = data
-
+        
+        
+    
+    def clear_log_file(self):
+        with open("log.txt", "w") as log_file:
+            print(f"zaman_ms;hiz_kmh;T_bat_C;V_bat_C;kalan_enerji_Wh",file=log_file)
+            pass
+        
+        
+        
+        
 
     def start_thread(self):
         self.data_thread.start()
@@ -79,7 +100,9 @@ class Speedometer(QObject):
     def GetValuesSelin(self):
         
         self.__data = serial_port3.get_packet(ser, circular_buffer, 128)
-        print(self.__data)
+        
+        
+ 
 
 
     def updateTextFieldValues(self):
@@ -206,11 +229,7 @@ class Speedometer(QObject):
             self.current_speed = self.target_speed
         
             
-            
-            
-        
-        
-        
+              
 
     def updateValueBattery(self):
         if self.__data is not None:
@@ -285,6 +304,7 @@ class SpeedometerApp(QApplication):
         if self.speedometer:
             self.speedometer.view = self.view  # Speedometer sınıfına view özelliğini atama
             self.speedometer.updateTextFieldValues()
+            
         
         
         
@@ -301,15 +321,20 @@ class SpeedometerApp(QApplication):
 
         self.view.show()
         return self.exec_()
+    
+    
+ 
 
 
 
 if __name__ == "__main__":
     global ser, circular_buffer
     # Seri port bağlantısını oluştur
-    ser = serial.Serial("COM15", 9600)
+    ser = serial.Serial("COM10", 9600)
     # istenilen boyutta bir döngüsel tampon oluştur
     circular_buffer = serial_port3.CircularBuffer(128)
+    
+    
 
     app = SpeedometerApp(sys.argv) 
     sys.exit(app.run())
