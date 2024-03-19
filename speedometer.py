@@ -67,6 +67,8 @@ class Speedometer(QObject):
         self.__data = None
         self.data_thread = WorkerThread()
         self.data_thread.thread_signal.connect(self.data_thread_handler)
+        
+        
 
         
         
@@ -142,6 +144,14 @@ class Speedometer(QObject):
             
             textFieldSpeed= self.view.findChild(QObject,"textFieldSpeed")
             
+            textFieldWh =self.view.findChild(QObject,"textFieldWh")
+            
+            textFieldVolt =self.view.findChild(QObject,"textFieldVolt")
+            
+            textFieldTemp =self.view.findChild(QObject,"textFieldTemp")
+            
+            textFieldBt =self.view.findChild(QObject,"textFieldBt")
+            
             
          
             
@@ -211,6 +221,22 @@ class Speedometer(QObject):
             if textFieldSpeed:
                 speed_text = str(self.current_speed) + " km/h"
                 textFieldSpeed.setProperty("text", speed_text)  
+                
+            if textFieldWh:
+                wh_text = str(self.current_watt) + " Wh"
+                textFieldWh.setProperty("text", wh_text)  
+                
+            if textFieldVolt:
+                volt_text = str(self.current_volt) + " V"
+                textFieldVolt.setProperty("text", volt_text) 
+                
+            if textFieldTemp:
+                temp_text = str(self.current_temp) + " °C"
+                textFieldTemp.setProperty("text", temp_text) 
+                
+            if textFieldBt:
+                bt_text = str(self.current_battery) + " %"
+                textFieldBt.setProperty("text", bt_text) 
             
         
         
@@ -278,16 +304,16 @@ class Speedometer(QObject):
     def setSpeed(self, value):      
         gauge.setProperty('speedgauge_value', value)
       
-    def setBattery(self, value):
+    def setWatt(self, value):
         gauge2.setProperty('whgauge_value', value)
 
     def setTemp(self, value):
         gauge3.setProperty('tempgauge_value', value)
 
-    def setWatt(self, value):
+    def setVolt(self, value):
         gauge4.setProperty('voltgauge_value', value)
 
-    def setVolt(self, value):
+    def setBattery(self, value):
         gauge5.setProperty('btgauge_value', value)
     
 

@@ -40,7 +40,9 @@ Rectangle {
                height: 30; 
                font.pixelSize: 14; 
                color: "white"; 
-               background: Color.transparent
+               background: Rectangle {
+                    color: "transparent"; // Arka planı şeffaf yapar
+               }
                
                Text{
                     anchors.top: parent.top
@@ -61,7 +63,9 @@ Rectangle {
                height: 30; 
                font.pixelSize: 14; 
                color: "white";
-               background: Color.transparent
+               background: Rectangle {
+                    color: "transparent"; // Arka planı şeffaf yapar
+               }
                Text{
                     anchors.top: parent.top
                     anchors.topMargin: -10
@@ -74,7 +78,10 @@ Rectangle {
           }
           TextField 
           { 
-               id: textField3; objectName: "textField3"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               id: textField3; objectName: "textField3"; width:50; height: 30; font.pixelSize: 14; color: "white";
+               background: Rectangle {
+                    color: "transparent"; // Arka planı şeffaf yapar
+               }
                Text{
                     anchors.top: parent.top
                     anchors.topMargin: -10
@@ -87,7 +94,10 @@ Rectangle {
           }
           TextField 
           { 
-               id: textField4; objectName: "textField4"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent
+               id: textField4; objectName: "textField4"; width:50; height: 30; font.pixelSize: 14; color: "white";
+               background: Rectangle {
+                    color: "transparent"; // Arka planı şeffaf yapar
+               }    
                Text{
                     anchors.top: parent.top
                     anchors.topMargin: -10
@@ -100,7 +110,10 @@ Rectangle {
           }
           TextField 
           { 
-               id: textField5; objectName: "textField5"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent
+               id: textField5; objectName: "textField5"; width:50; height: 30; font.pixelSize: 14; color: "white";
+               background: Rectangle {
+                    color: "transparent"; // Arka planı şeffaf yapar
+               }
                Text{
                     anchors.top: parent.top
                     anchors.topMargin: -10
@@ -113,7 +126,10 @@ Rectangle {
           }
           TextField 
           { 
-               id: textField6; objectName: "textField6"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent
+               id: textField6; objectName: "textField6"; width:50; height: 30; font.pixelSize: 14; color: "white"; 
+               background: Rectangle {
+                    color: "transparent"; // Arka planı şeffaf yapar
+               }
                Text{
                     anchors.top: parent.top
                     anchors.topMargin: -10
@@ -126,7 +142,10 @@ Rectangle {
           }
           TextField 
           { 
-               id: textField7; objectName: "textField7"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               id: textField7; objectName: "textField7"; width:50; height: 30; font.pixelSize: 14; color: "white";
+               background: Rectangle {
+                    color: "transparent"; // Arka planı şeffaf yapar
+               }
                Text{
                     anchors.top: parent.top
                     anchors.topMargin: -10
@@ -139,7 +158,11 @@ Rectangle {
           }
           TextField 
           { 
-               id: textField8; objectName: "textField8"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               id: textField8; objectName: "textField8"; width:50; height: 30; font.pixelSize: 14; color: "white"; 
+               background: Rectangle 
+               {
+               color: "transparent"; // Arka planı şeffaf yapar
+               }
                Text{
                     anchors.top: parent.top
                     anchors.topMargin: -10
@@ -152,7 +175,10 @@ Rectangle {
           }
           TextField 
           { 
-               id: textField9; objectName: "textField9"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               id: textField9; objectName: "textField9"; width:50; height: 30; font.pixelSize: 14; color: "white"; 
+               background: Rectangle {
+               color: "transparent"; 
+               }
                Text{
                     anchors.top: parent.top
                     anchors.topMargin: -10
@@ -165,7 +191,10 @@ Rectangle {
           }
           TextField 
           { 
-               id: textField10; objectName: "textField10"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               id: textField10; objectName: "textField10"; width:50; height: 30; font.pixelSize: 14; color: "white";
+               background: Rectangle {
+                    color: "transparent"; // Arka planı şeffaf yapar
+               }
                Text{
                     anchors.top: parent.top
                     anchors.topMargin: -10
@@ -178,7 +207,10 @@ Rectangle {
           }
           TextField 
           { 
-               id: textField11; objectName: "textField11"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               id: textField11; objectName: "textField11"; width:50; height: 30; font.pixelSize: 14; color: "white";
+               background: Rectangle {
+                    color: "transparent"; // Arka planı şeffaf yapar
+               }
                Text{
                     anchors.top: parent.top
                     anchors.topMargin: -10
@@ -191,7 +223,10 @@ Rectangle {
           }
           TextField 
           { 
-               id: textField12; objectName: "textField12"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               id: textField12; objectName: "textField12"; width:50; height: 30; font.pixelSize: 14; color: "white";
+               background: Rectangle {
+                    color: "transparent"; // Arka planı şeffaf yapar
+               }
                Text{
                     anchors.top: parent.top
                     anchors.topMargin: -10
@@ -204,7 +239,10 @@ Rectangle {
           }
           TextField 
           { 
-               id: textField13; objectName: "textField13"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               id: textField13; objectName: "textField13"; width:50; height: 30; font.pixelSize: 14; color: "white";
+               background: Rectangle {
+                    color: "transparent"; // Arka planı şeffaf yapar
+               }
                Text{
                     anchors.top: parent.top
                     anchors.topMargin: -10
@@ -217,7 +255,10 @@ Rectangle {
           }
           TextField 
           { 
-               id: textField14; objectName: "textField14"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               id: textField14; objectName: "textField14"; width:50; height: 30; font.pixelSize: 14; color: "white";
+               background: Rectangle {
+                    color: "transparent"; // Arka planı şeffaf yapar
+               }
                Text{
                     anchors.top: parent.top
                     anchors.topMargin: -10
@@ -230,7 +271,10 @@ Rectangle {
                }
           TextField 
           { 
-               id: textField15; objectName: "textField15"; width:50; height: 30; font.pixelSize: 14; color: "white"; background: Color.transparent 
+               id: textField15; objectName: "textField15"; width:50; height: 30; font.pixelSize: 14; color: "white"; 
+               background: Rectangle {
+                    color: "transparent"; // Arka planı şeffaf yapar
+               }
                Text{
                     anchors.top: parent.top
                     anchors.topMargin: -10
@@ -336,6 +380,18 @@ Rectangle {
           value: whgauge_value
           maximumValue: 100.0  // Largest Value
           minimumValue: 0.0       // Smallest Value
+          Text {
+               id:textFieldWh
+               objectName: "textFieldWh"
+               
+               font.pixelSize: 24 // Yazı boyutu
+               color: "white" // Yazı rengi
+               anchors.horizontalCenter: parent.horizontalCenter // Yatay hizalama
+               anchors.top: parent.bottom // Üst kenarın altına hizalama
+               anchors.topMargin: -70 // Üst kenarın altına boşluk bırakma
+               
+               
+          }
           style: CircularGaugeStyle {
                id: style2
                tickmarkStepSize: 10.0 // Tick Marks
@@ -393,6 +449,18 @@ Rectangle {
           value: tempgauge_value
           maximumValue: 100.0  // Largest Value
           minimumValue: 0.0       // Smallest Value
+          Text {
+               id:textFieldTemp
+               objectName: "textFieldTemp"
+               
+               font.pixelSize: 24 // Yazı boyutu
+               color: "white" // Yazı rengi
+               anchors.horizontalCenter: parent.horizontalCenter // Yatay hizalama
+               anchors.top: parent.bottom // Üst kenarın altına hizalama
+               anchors.topMargin: -70 // Üst kenarın altına boşluk bırakma
+               
+               
+          }
           style: CircularGaugeStyle {
                id: style
                tickmarkStepSize: 10.0 // Tick Marks
@@ -444,7 +512,7 @@ Rectangle {
      //
      CircularGauge {
             objectName: "volt_gauge"
-            property real voltgauge_value: 50  //
+            property real voltgauge_value: 0  //
             width:210 // göstergenin büyüklük kare olcak
             height:210
             //anchors.centerIn: parent
@@ -453,6 +521,18 @@ Rectangle {
             value: voltgauge_value
             maximumValue: 24.0  // Largest Value
             minimumValue: 0.0       // Smallest Value
+            Text {
+               id:textFieldVolt
+               objectName: "textFieldVolt"
+               
+               font.pixelSize: 24 // Yazı boyutu
+               color: "white" // Yazı rengi
+               anchors.horizontalCenter: parent.horizontalCenter // Yatay hizalama
+               anchors.top: parent.bottom // Üst kenarın altına hizalama
+               anchors.topMargin: -70 // Üst kenarın altına boşluk bırakma
+               
+               
+          }
             style: CircularGaugeStyle {
                 id: style
                 tickmarkStepSize: 2.0 // Tick Marks
@@ -508,7 +588,7 @@ Rectangle {
      //bt gauge
      CircularGauge {
             objectName: "bt_gauge"
-            property real btgauge_value: 50  //
+            property real btgauge_value: 0  //
             width:210 // göstergenin büyüklük kare olcak
             height:210
             //anchors.centerIn: parent
@@ -517,6 +597,18 @@ Rectangle {
             value: btgauge_value
             maximumValue: 100.0  // Largest Value
             minimumValue: 0.0       // Smallest Value
+            Text {
+               id:textFieldBt
+               objectName: "textFieldBt"
+               
+               font.pixelSize: 24 // Yazı boyutu
+               color: "white" // Yazı rengi
+               anchors.horizontalCenter: parent.horizontalCenter // Yatay hizalama
+               anchors.top: parent.bottom // Üst kenarın altına hizalama
+               anchors.topMargin: -70 // Üst kenarın altına boşluk bırakma
+               
+               
+          }
             style: CircularGaugeStyle {
                 id: style
                 tickmarkStepSize: 10.0 // Tick Marks
