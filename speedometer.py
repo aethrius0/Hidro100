@@ -17,9 +17,9 @@ class WorkerThread(QThread):
     thread_signal = pyqtSignal(bytes)
 
     def run(self):
-        self.GetValuesSelin()
+        self.GetValuesPorts()
 
-    def GetValuesSelin(self):
+    def GetValuesPorts(self):
         while True:
             data = serial_port3.get_packet(ser, circular_buffer, 128)
             # print(data)
@@ -47,7 +47,7 @@ class Speedometer(QObject):
         self.timer_watt.timeout.connect(self.updateValueWatt)
         self.timer_volt.timeout.connect(self.updateValueVolt)
         self.timer_updateTextField.timeout.connect(self.updateTextFieldValues)
-        # self.GetValues.timeout.connect(self.GetValuesSelin)
+        # self.GetValues.timeout.connect(self.GetValuesPorts)
 
         self.timer_speed.start(1000)
         self.timer_battery.start(1000)
@@ -62,18 +62,13 @@ class Speedometer(QObject):
         self.current_battery = 0
         self.current_temp = 0
         self.current_watt = 0
-        self.current_volt = 0 
+        self.current_volt = 0
 
         self.__data = None
         self.data_thread = WorkerThread()
         self.data_thread.thread_signal.connect(self.data_thread_handler)
         
-        
 
-        
-        
-        
-        
         self.clear_log_file()
         
         
@@ -99,7 +94,7 @@ class Speedometer(QObject):
     def start_thread(self):
         self.data_thread.start()
         
-    def GetValuesSelin(self):
+    def GetValuesPorts(self):
         
         self.__data = serial_port3.get_packet(ser, circular_buffer, 128)
         
@@ -219,24 +214,45 @@ class Speedometer(QObject):
             
              
             if textFieldSpeed:
-                speed_text = str(self.current_speed) + " km/h"
-                textFieldSpeed.setProperty("text", speed_text)  
+                if self.current_speed == 0:  # Eğer batarya seviyesi 0 ise
+                    speed_text = "N/A km/h"
+                    textFieldSpeed.setProperty("text", speed_text)
+                else:
+                    speed_text = str(self.current_speed) + " km/h"
+                textFieldSpeed.setProperty("text", speed_text) 
                 
             if textFieldWh:
-                wh_text = str(self.current_watt) + " Wh"
-                textFieldWh.setProperty("text", wh_text)  
+                if self.current_watt == 0:  # Eğer batarya seviyesi 0 ise
+                    watt_text = "N/A Wh"
+                    textFieldWh.setProperty("text", watt_text)
+                else:
+                    watt_text = str(self.current_watt) + " Wh"
+                textFieldWh.setProperty("text", watt_text) 
                 
             if textFieldVolt:
-                volt_text = str(self.current_volt) + " V"
-                textFieldVolt.setProperty("text", volt_text) 
+                if self.current_volt == 0:  # Eğer batarya seviyesi 0 ise
+                    volt_text = "N/A V"
+                    textFieldVolt.setProperty("text", volt_text)
+                else:
+                    volt_text = str(self.current_volt) + " V"
+                textFieldVolt.setProperty("text", volt_text)
                 
             if textFieldTemp:
-                temp_text = str(self.current_temp) + " °C"
-                textFieldTemp.setProperty("text", temp_text) 
-                
+                if self.current_temp == 0:  # Eğer batarya seviyesi 0 ise
+                    temp_text = "N/A °C"
+                    textFieldTemp.setProperty("text", temp_text)
+                else:
+                    temp_text = str(self.current_temp) + " °C"
+                textFieldTemp.setProperty("text", temp_text)
+               
             if textFieldBt:
-                bt_text = str(self.current_battery) + " %"
-                textFieldBt.setProperty("text", bt_text) 
+                if self.current_battery == 0:  # Eğer batarya seviyesi 0 ise
+                    bt_text = "N/A %"
+                    textFieldBt.setProperty("text", bt_text)
+                else:
+                    bt_text = str(self.current_battery) + " %"
+                textFieldBt.setProperty("text", bt_text)
+
             
         
         
@@ -267,6 +283,10 @@ class Speedometer(QObject):
             self.anim_battery.valueChanged.connect(self.setBattery)
             self.anim_battery.start()
             self.current_battery = self.target_battery
+        
+            
+        
+            
 
     def updateValueTemp(self):
         if self.__data is not None:

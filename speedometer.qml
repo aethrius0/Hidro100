@@ -609,6 +609,7 @@ Rectangle {
                
                
           }
+            
             style: CircularGaugeStyle {
                 id: style
                 tickmarkStepSize: 10.0 // Tick Marks
