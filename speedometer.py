@@ -3,14 +3,14 @@ import os
 import random
 from PyQt5.QtCore import QObject, QUrl, QTimer, QVariantAnimation, QThread, pyqtSignal
 from PyQt5.QtCore import pyqtProperty
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication,QHBoxLayout,QVBoxLayout,QWidget
 from PyQt5.QtQuick import QQuickView
 from PyQt5.QtQml import QQmlApplicationEngine
 from PyQt5.QtCore import QThread, pyqtSignal
 import veri_isleme
 import serial_port3
 import serial
-import time
+
 
 
 class WorkerThread(QThread):
@@ -31,6 +31,8 @@ class Speedometer(QObject):
         super().__init__(parent)
         self.view=None
         self.time=9000
+        
+        
         
         
         self.timer_speed = QTimer(self)
@@ -247,7 +249,7 @@ class Speedometer(QObject):
                
             if textFieldBt:
                 if self.current_battery == 0:  # Eğer batarya seviyesi 0 ise
-                    bt_text = "N/A %"
+                    bt_text = "  N/A %"
                     textFieldBt.setProperty("text", bt_text)
                 else:
                     bt_text = str(self.current_battery) + " %"
@@ -272,7 +274,7 @@ class Speedometer(QObject):
         
             
               
-
+    
     def updateValueBattery(self):
         if self.__data is not None:
             self.target_battery = float((veri_isleme.State_of_charge(self.__data))[0])
@@ -283,6 +285,7 @@ class Speedometer(QObject):
             self.anim_battery.valueChanged.connect(self.setBattery)
             self.anim_battery.start()
             self.current_battery = self.target_battery
+            
         
             
         
@@ -334,7 +337,7 @@ class Speedometer(QObject):
         gauge4.setProperty('voltgauge_value', value)
 
     def setBattery(self, value):
-        gauge5.setProperty('btgauge_value', value)
+        gauge6.setProperty('btgauge_value', value)
     
 
 
@@ -344,6 +347,7 @@ class SpeedometerApp(QApplication):
         self.view = QQuickView()
         self.view.setTitle("Vehicle Panel")
         self.view.setSource(QUrl('speedometer.qml'))
+  
         self.speedometer = Speedometer()
         self.speedometer.start_thread()
         
@@ -357,12 +361,13 @@ class SpeedometerApp(QApplication):
 
     def run(self):
         
-        global gauge, gauge2, gauge3, gauge4, gauge5
+        global gauge, gauge2, gauge3, gauge4 ,gauge6
         gauge = self.view.findChild(QObject, 'speed_gauge')
         gauge2 = self.view.findChild(QObject, 'wh_gauge')
         gauge3 = self.view.findChild(QObject, 'temp_gauge')
         gauge4 = self.view.findChild(QObject, 'volt_gauge')
-        gauge5 = self.view.findChild(QObject, 'bt_gauge')
+        #gauge5 = self.view.findChild(QObject, 'bt_gauge')
+        gauge6 = self.view.findChild(QObject, "bt_gauge")
         
 
         self.view.show()

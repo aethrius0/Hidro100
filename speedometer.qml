@@ -3,12 +3,18 @@ import QtQuick.Controls 2.12
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Extras 1.4
 import QtQuick.Extras.Private 1.0
+import QtQuick.Layouts 1.3
 
-Rectangle {
+Rectangle
+ {
+     
      width: 1050
      height: 560
      color: "#000000"
-
+     
+     
+     
+         
      
     Image {
         source: "hidroket-logo.png" 
@@ -17,12 +23,12 @@ Rectangle {
         
         
      }
+     
 
-     Row {
-         
+     Row {  //Row'dan RowLayout yaptım
+          //Layout.fillWidth: true
           spacing: 10
-          anchors {
-               
+          anchors {  
                //top: speed_gauge.bottom // Ana bileşenin altından başlasın
                bottom: parent.bottom // Ana bileşenin alt kısmına hizalama
                horizontalCenter: parent.horizontalCenter // Yatay olarak merkezleme
@@ -33,17 +39,18 @@ Rectangle {
      /* Arayüzün aşağısındaki TextField Kutucukları */
 
           TextField{
+               
                id: textField1
                text:""
                objectName: "textField1"; 
-               width:50; 
-               height: 30; 
+               width: 50
+               height: 30 // Sabit bir yükseklik değeri 
                font.pixelSize: 14; 
                color: "white"; 
                background: Rectangle {
                     color: "transparent"; // Arka planı şeffaf yapar
                }
-               
+
                Text{
                     anchors.top: parent.top
                     anchors.topMargin: -10
@@ -287,21 +294,106 @@ Rectangle {
           }
 
      
-          
+     }    
 
           
-     }
      
-    
+     
+     /*CircularGauge {
+          objectName: "speed_gauge"
+          property real speedgauge_value: 0
+          width: 370
+          height:370
+          anchors.centerIn: parent
+          
+          // Değerin gösterildiği metin
+          Text {
+               id:textFieldSpeed
+               objectName: "textFieldSpeed"
+               
+               font.pixelSize: 24 // Yazı boyutu
+               color: "white" // Yazı rengi
+               anchors.horizontalCenter: parent.horizontalCenter // Yatay hizalama
+               anchors.top: parent.bottom // Üst kenarın altına hizalama
+               anchors.topMargin: -100 // Üst kenarın altına boşluk bırakma
+               
+               
+          }
+          style: CircularGaugeStyle {
+              id: style
+
+              function degreesToRadians(degrees) {
+                  return degrees * (Math.PI / 180);
+              }
+
+              background: Canvas {
+                  onPaint: {
+                      var ctx = getContext("2d");
+                      ctx.reset();
+
+                      ctx.beginPath();
+                      ctx.strokeStyle = "#e34c22";
+                      ctx.lineWidth = outerRadius * 0.02;
+
+                      ctx.arc(outerRadius, outerRadius, outerRadius - ctx.lineWidth / 2,
+                          degreesToRadians(valueToAngle(60) - 70), degreesToRadians(valueToAngle(80) - 70));
+                      ctx.stroke();
+                  }
+              }
+
+              tickmark: Rectangle {
+                  visible: styleData.value < 80 || styleData.value % 10 == 0
+                  implicitWidth: outerRadius * 0.02
+                  antialiasing: true
+                  implicitHeight: outerRadius * 0.06
+                  color: styleData.value >= 80 ? "#ffffff" : "#ffffff"
+              }
+
+              minorTickmark: Rectangle {
+                  visible: styleData.value < 80
+                  implicitWidth: outerRadius * 0.01
+                  antialiasing: true
+                  implicitHeight: outerRadius * 0.03
+                  color: "#0000FF"
+              }
+
+              tickmarkLabel:  Text {
+                  font.pixelSize: Math.max(6, outerRadius * 0.1)
+                  text: styleData.value
+                  color: styleData.value >= 80 ? "#ffffff" : "#ffffff"
+                  antialiasing: true
+              }
+
+              needle: Rectangle {
+                  y: outerRadius * 0.15
+                  implicitWidth: outerRadius * 0.03
+                  implicitHeight: outerRadius * 0.9
+                  antialiasing: true
+                  color: "#ffff00"
+              }
+
+              foreground: Item {
+                  Rectangle {
+                      width: outerRadius * 0.2
+                      height: width
+                      radius: width / 2
+                      color: "#b2b2b2"
+                      anchors.centerIn: parent
+                  }
+              }
+          }
+     }*/
     
      CircularGauge {
           objectName: "speed_gauge"
           property real speedgauge_value: 0
-          width:370 // göstergenin büyüklük kare olcak
+          
+          width: 370
           height:370
           //anchors.centerIn: parent
-          x:60   //hız göstergesinin koordinatları
-          y:20
+          x:330   //hız göstergesinin koordinatları
+          y:15
+          
           value: speedgauge_value
           maximumValue: 70.0  // Largest Value
           minimumValue: 0.0       // Smallest Value
@@ -375,7 +467,7 @@ Rectangle {
           property real whgauge_value: 0
           width:210
           height:210
-          x:520
+          x:820
           y:10
           value: whgauge_value
           maximumValue: 100.0  // Largest Value
@@ -438,7 +530,71 @@ Rectangle {
                }
           }
      }
-     
+     Gauge {
+         objectName: "temp_gauge"
+         property real tempgauge_value: 0
+         tickmarkStepSize: 20
+         minorTickmarkCount: 4
+         font.pixelSize: 15
+         //anchors.centerIn: parent
+         //anchors.horizontalCenterOffset: -7
+         x:255  //hız göstergesinin koordinatları
+         y:115
+         value: tempgauge_value
+         maximumValue: 100.0  // Largest Value
+         minimumValue: 0.0       // Smallest Value
+         
+         Text {
+              id:textFieldTemp
+              objectName: "textFieldTemp"  
+              font.pixelSize: 24 // Yazı boyutu
+              color: "white" // Yazı rengi
+              anchors.horizontalCenter: parent.horizontalCenter // Yatay hizalama
+              anchors.top: parent.bottom // Üst kenarın altına hizalama
+              anchors.topMargin: 0 // Üst kenarın altına boşluk bırakma    
+         }
+         
+         style: GaugeStyle {
+              valueBar: Rectangle {
+                   color: "#0000ff"
+                   implicitWidth: 28
+              } 
+              foreground: null
+              
+              tickmark: Item {
+                 implicitWidth: 18
+                 implicitHeight: 1
+                 
+                 Rectangle {
+                        x: control.tickmarkAlignment === Qt.AlignLeft
+                            || control.tickmarkAlignment === Qt.AlignTop ? parent.implicitWidth : -28
+                        width: 28
+                        height: parent.height
+                        color: "#c8c8c8"
+                        anchors.fill: parent
+                        anchors.leftMargin: 3
+                        anchors.rightMargin: 3
+                   }
+              }
+             
+              minorTickmark: Item {
+                   implicitWidth: 8
+                   implicitHeight: 1
+                   
+                   Rectangle {
+                        x: control.tickmarkAlignment === Qt.AlignLeft
+                            || control.tickmarkAlignment === Qt.AlignTop ? parent.implicitWidth : -28
+                        width: 10
+                        height: parent.height
+                        color: "#cccccc"
+                        anchors.fill: parent
+                        anchors.leftMargin: 2
+                        anchors.rightMargin: 4
+                   }
+              }
+         }
+     }
+     /*
      CircularGauge {
           objectName: "temp_gauge"
           width: 210
@@ -506,7 +662,7 @@ Rectangle {
                     }
                }
           }
-     }
+     }*/
     
      //Voltmeter gauge
      //
@@ -516,8 +672,8 @@ Rectangle {
             width:210 // göstergenin büyüklük kare olcak
             height:210
             //anchors.centerIn: parent
-            x:520   //hız göstergesinin koordinatları
-            y:250
+            x:30   //hız göstergesinin koordinatları
+            y:10
             value: voltgauge_value
             maximumValue: 24.0  // Largest Value
             minimumValue: 0.0       // Smallest Value
@@ -584,7 +740,7 @@ Rectangle {
           }
      }
 
-     
+     /*
      //bt gauge
      CircularGauge {
             objectName: "bt_gauge"
@@ -659,6 +815,78 @@ Rectangle {
                     }
                }
           }
-     }
+     }*/
+
+     Gauge {
+
+          objectName: "bt_gauge"
+          property real btgauge_value: 0
+          tickmarkStepSize: 20
+          minorTickmarkCount: 4
+          font.pixelSize: 15
+          //anchors.centerIn: parent
+          //anchors.horizontalCenterOffset: -7
+          x:710   //hız göstergesinin koordinatları
+          y:115
+          value: btgauge_value
+          maximumValue: 100.0  // Largest Value
+          minimumValue: 0.0       // Smallest Value
+          Text {
+             id:textFieldBt
+             objectName: "textFieldBt"
+             
+             font.pixelSize: 24 // Yazı boyutu
+             color: "white" // Yazı rengi
+             anchors.horizontalCenter: parent.horizontalCenter // Yatay hizalama
+             anchors.top: parent.bottom // Üst kenarın altına hizalama
+             anchors.topMargin: 0 // Üst kenarın altına boşluk bırakma
+             
+             
+          }
+
+
+          style: GaugeStyle {
+               valueBar: Rectangle {
+                    color: "#0000ff"
+                    implicitWidth: 28
+               }    
+
+               foreground: null
+
+               tickmark: Item {
+                  implicitWidth: 18
+                  implicitHeight: 1
+                  
+
+                  Rectangle {
+                         x: control.tickmarkAlignment === Qt.AlignLeft
+                             || control.tickmarkAlignment === Qt.AlignTop ? parent.implicitWidth : -28
+                         width: 28
+                         height: parent.height
+                         color: "#c8c8c8"
+                         anchors.fill: parent
+                         anchors.leftMargin: 3
+                         anchors.rightMargin: 3
+                    }
+               }
+
+              minorTickmark: Item {
+                    implicitWidth: 8
+                    implicitHeight: 1
+
+                    Rectangle {
+                         x: control.tickmarkAlignment === Qt.AlignLeft
+                             || control.tickmarkAlignment === Qt.AlignTop ? parent.implicitWidth : -28
+                         width: 10
+                         height: parent.height
+                         color: "#cccccc"
+                         anchors.fill: parent
+                         anchors.leftMargin: 2
+                         anchors.rightMargin: 4
+                    }
+               }
+          }
+    }
      
+      
 }
