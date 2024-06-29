@@ -5,11 +5,12 @@ from PyQt5.QtCore import QObject, QUrl, QTimer, QVariantAnimation, QThread, pyqt
 from PyQt5.QtCore import pyqtProperty
 from PyQt5.QtWidgets import QApplication,QHBoxLayout,QVBoxLayout,QWidget
 from PyQt5.QtQuick import QQuickView
-from PyQt5.QtQml import QQmlApplicationEngine
-from PyQt5.QtCore import QThread, pyqtSignal
+from PyQt5.QtQml import QQmlApplicationEngine,qmlRegisterType
+from PyQt5.QtCore import QThread,pyqtSlot,pyqtSignal
 import veri_isleme
 import serial_port3
 import serial
+import time
 
 
 
@@ -24,16 +25,17 @@ class WorkerThread(QThread):
             data = serial_port3.get_packet(ser, circular_buffer, 128)
             # print(data)
             self.thread_signal.emit(data)
+            
 
 
+        
 class Speedometer(QObject):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.view=None
-        self.time=9000
-        
-        
-        
+        self.current_time = time.strftime("%H:%M:%S")
+        self.current_date_time = time.strftime("%Y-%m-%d")
+         
         
         self.timer_speed = QTimer(self)
         self.timer_battery = QTimer(self)
@@ -70,24 +72,38 @@ class Speedometer(QObject):
         self.data_thread = WorkerThread()
         self.data_thread.thread_signal.connect(self.data_thread_handler)
         
+        
+        
 
         self.clear_log_file()
         
-        
-    def data_thread_handler(self, data):
-        self.time+=1000
-        
-        with open("log.txt", "a") as log_file:
-           
-            print(f"   {self.time};   {float((veri_isleme.Speed(data))[0])};  {float((veri_isleme.temperature(data))[0])};   {float((veri_isleme.volt_general(data))[0])};  {float((veri_isleme.Wh(data))[0])}", file=log_file)
-        self.__data = data
+    
         
         
     
+    
+        
+    def data_thread_handler(self, data):
+        
+
+        with open("log.txt", "a") as log_file:
+            self.current_time = time.strftime("%H:%M:%S")
+            self.current_date_time = time.strftime("%Y-%m-%d")
+
+            speed = float(veri_isleme.Speed(data)[0])
+            temp = float(veri_isleme.temperature(data)[0])
+            volt = float(veri_isleme.volt_general(data)[0])
+            wh = float(veri_isleme.Wh(data)[0])
+            soc = float(veri_isleme.State_of_charge(data)[0])
+
+            print(f"{self.current_date_time:12}{self.current_time:8} {speed:6.1f} {temp:6.2f} {volt:6.2f} "
+                  f"{wh:6.1f} {soc:6.2f}", file=log_file)
+
+        self.__data = data
+
     def clear_log_file(self):
         with open("log.txt", "w") as log_file:
-            print(f"zaman_ms;hiz_kmh;T_bat_C;V_bat_C;kalan_enerji_Wh",file=log_file)
-            pass
+            print(f"{'DATE':11} {'TIME':10} {'Kph':6} {'TEMP':6} {'VOLT':6} {'Wh':6} {'SoC':6}", file=log_file)
         
         
         
@@ -101,10 +117,13 @@ class Speedometer(QObject):
         self.__data = serial_port3.get_packet(ser, circular_buffer, 128)
         
         
- 
+    
+            
 
 
     def updateTextFieldValues(self):
+        if self.__data is None:
+            return  # Veriler henüz alınmadıysa hiçbir şey yapma
         
         if self.view:
             
@@ -139,6 +158,8 @@ class Speedometer(QObject):
             textField15 = self.view.findChild(QObject, "textField15")
             
             
+            
+            
             textFieldSpeed= self.view.findChild(QObject,"textFieldSpeed")
             
             textFieldWh =self.view.findChild(QObject,"textFieldWh")
@@ -150,78 +171,82 @@ class Speedometer(QObject):
             textFieldBt =self.view.findChild(QObject,"textFieldBt")
             
             
+            
+            
+            textInput = self.view.findChild(QObject, "textInput")
+            
          
             
             
             
             if textField1:
-                value = random.randint(0, 100)
-                textField1.setProperty("text", value)
+                value = float(veri_isleme.volts_cells(self.__data)[0])
+                textField1.setProperty("text", str(value) + " V")
                 
             if textField2:
-                value = random.randint(0, 100)
-                textField2.setProperty("text", value)
+                value = float(veri_isleme.volts_cells(self.__data)[0])
+                textField2.setProperty("text", str(value) + " V")
                 
             if textField3:
-                value = random.randint(0, 100)
-                textField3.setProperty("text", value)
+                value = float(veri_isleme.volts_cells(self.__data)[0])
+                textField3.setProperty("text", str(value) + " V")
                 
             if textField4:
-                value = random.randint(0, 100)
-                textField4.setProperty("text", value)
+                value = float(veri_isleme.volts_cells(self.__data)[0])
+                textField4.setProperty("text", str(value) + " V")
                 
             if textField5:
-                value = random.randint(0, 100)
-                textField5.setProperty("text", value)
+                value = float(veri_isleme.volts_cells(self.__data)[0])
+                textField5.setProperty("text", str(value) + " V")
                 
             if textField6:
-                value = random.randint(0, 100)
-                textField6.setProperty("text", value)
+                value = float(veri_isleme.volts_cells(self.__data)[0])
+                textField6.setProperty("text", str(value) + " V")
                 
             if textField7:
-                value = random.randint(0, 100)
-                textField7.setProperty("text", value)
+                value = float(veri_isleme.volts_cells(self.__data)[0])
+                textField7.setProperty("text", str(value) + " V")
                 
             if textField8:
-                value = random.randint(0, 100)
-                textField8.setProperty("text", value)
+                value = float(veri_isleme.volts_cells(self.__data)[0])
+                textField8.setProperty("text", str(value) + " V")
                 
             if textField9:
-                value = random.randint(0, 100)
-                textField9.setProperty("text", value)
+                value = float(veri_isleme.volts_cells(self.__data)[0])
+                textField9.setProperty("text", str(value) + " V")
                 
             if textField10:
-                value = random.randint(0, 100)
-                textField10.setProperty("text", value)
+                value = float(veri_isleme.volts_cells(self.__data)[0])
+                textField10.setProperty("text", str(value) + " V")
                 
             if textField11:
-                value = random.randint(0, 100)
-                textField11.setProperty("text", value)
+                value = float(veri_isleme.volts_cells(self.__data)[0])
+                textField11.setProperty("text", str(value) + " V")
                 
             if textField12:
-                value = random.randint(0, 100)
-                textField12.setProperty("text", value)
+                value = float(veri_isleme.volts_cells(self.__data)[0])
+                textField12.setProperty("text", str(value) + " V")
                 
             if textField13:
-                value = random.randint(0, 100)
-                textField13.setProperty("text", value)
+                value = float(veri_isleme.volts_cells(self.__data)[0])
+                textField13.setProperty("text", str(value) + " V")
                 
             if textField14:
-                value = random.randint(0, 100)
-                textField14.setProperty("text", value)
+                value = float(veri_isleme.volts_cells(self.__data)[0])
+                textField14.setProperty("text", str(value) + " V")
                 
             if textField15:
-                value = random.randint(0, 100)
-                textField15.setProperty("text", value)
+                value = float(veri_isleme.volts_cells(self.__data)[0])
+                textField15.setProperty("text", str(value) + " V")
             
              
-            if textFieldSpeed:
-                if self.current_speed == 0:  # Eğer batarya seviyesi 0 ise
-                    speed_text = "N/A km/h"
-                    textFieldSpeed.setProperty("text", speed_text)
-                else:
-                    speed_text = str(self.current_speed) + " km/h"
-                textFieldSpeed.setProperty("text", speed_text) 
+            #if textFieldSpeed:
+            #    if self.current_speed == 0:  # Eğer batarya seviyesi 0 ise
+            #        speed_text = "N/A km/h"
+            #        textFieldSpeed.setProperty("text", speed_text)
+            #    else:
+            #        speed_text = str(self.current_speed) + " km/h"
+            #    textFieldSpeed.setProperty("text", speed_text) 
                 
             if textFieldWh:
                 if self.current_watt == 0:  # Eğer batarya seviyesi 0 ise
@@ -257,6 +282,38 @@ class Speedometer(QObject):
 
             
         
+            
+            if self.view:
+                textInput = self.view.findChild(QObject, "textInput")
+                if textInput:
+                    new_text = "WORKING PROPERLY..."
+                    textInput.setProperty("text", new_text)
+                    if self.current_temp>70:
+                        new_text="WARNING!! HIGH TEMPERATURE !!"
+                        textInput.setProperty("text", new_text)
+                        
+                    elif self.current_temp<3:
+                        new_text="WARNING!! LOW TEMPERATURE !!"
+                        textInput.setProperty("text", new_text)
+                        
+                    elif self.current_volt>20:
+                        new_text="WARNING!! HIGH VOLTAGE !!"
+                        textInput.setProperty("text", new_text)
+                    
+                    elif self.current_volt<3:
+                        new_text="WARNING!! LOW VOLTAGE !!"
+                        textInput.setProperty("text", new_text)
+                    
+                    elif self.current_battery<20:
+                        new_text="WARNING!! LOW BATTERY CHARGE !!"
+                        textInput.setProperty("text", new_text)
+                    
+                    
+                        
+                    
+                        
+                else:
+                    print("textInput bulunamadı.")
         
 
     
@@ -345,19 +402,19 @@ class SpeedometerApp(QApplication):
     def __init__(self, argv):
         super().__init__(argv)
         self.view = QQuickView()
-        self.view.setTitle("Vehicle Panel")
+        self.view.setTitle("HIDROKET VEHICLE PANEL")
         self.view.setSource(QUrl('speedometer.qml'))
-  
+        
         self.speedometer = Speedometer()
         self.speedometer.start_thread()
+        
+       
         
         if self.speedometer:
             self.speedometer.view = self.view  # Speedometer sınıfına view özelliğini atama
             self.speedometer.updateTextFieldValues()
             
-        
-        
-        
+ 
 
     def run(self):
         
@@ -369,7 +426,9 @@ class SpeedometerApp(QApplication):
         #gauge5 = self.view.findChild(QObject, 'bt_gauge')
         gauge6 = self.view.findChild(QObject, "bt_gauge")
         
-
+        
+        
+        
         self.view.show()
         return self.exec_()
     
@@ -377,15 +436,12 @@ class SpeedometerApp(QApplication):
  
 
 
-
 if __name__ == "__main__":
     global ser, circular_buffer
     # Seri port bağlantısını oluştur
-    ser = serial.Serial("COM10", 9600)
+    ser = serial.Serial("COM9", 9600)
     # istenilen boyutta bir döngüsel tampon oluştur
-    circular_buffer = serial_port3.CircularBuffer(128)
-    
-    
+    circular_buffer = serial_port3.CircularBuffer(128)  
 
     app = SpeedometerApp(sys.argv) 
     sys.exit(app.run())
